@@ -26,7 +26,6 @@ pipeline {
                 sh 'docker push 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr:latest'
           }
         }
-      }
     }
     stage('stop previous containers') {
       steps{
