@@ -23,7 +23,7 @@ pipeline {
       steps{
         script {
                 sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 883081664011.dkr.ecr.us-east-2.amazonaws.com'
-                sh 'docker push 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr:latest'
+                sh 'docker push 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr1:latest'
           }
         }
     }
@@ -37,7 +37,7 @@ pipeline {
     stage('Docker Run') {
       steps{
          script {
-                 sh 'docker run -d -p 8096:5000 --rm --name httpbin_image 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr'
+                 sh 'docker run -d -p 8096:5000 --rm --name httpbin_image 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr1'
                 }
             }   
         }
