@@ -22,7 +22,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-                sh 'aws ecr get-login-password --region us-east-2 | docker login --username kennethreitz --password-stdin 883081664011.dkr.ecr.us-east-2.amazonaws.com'
+                sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 883081664011.dkr.ecr.us-east-2.amazonaws.com'
                 sh 'docker push 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr:latest'
           }
         }
