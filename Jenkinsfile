@@ -40,8 +40,8 @@ pipeline {
          script {
                  sh 'docker run -d -p 8096:5000 --rm --name httpbin_image 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr'
                 }
-            }
-            
+            }   
         }
   }
+}
 }
