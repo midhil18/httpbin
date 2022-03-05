@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git([url: 'https://github.com/midhil18/httpbin', branch: 'master', credentialsId: 'midhil18'])
+        git([url: 'https://github.com/midhil18/httpbin', branch: 'patch-1', credentialsId: 'midhil18'])
  
       }
     }
@@ -30,15 +30,15 @@ pipeline {
     }
     stage('stop previous containers') {
       steps{
-            sh 'docker ps -f name=mypythonContainer -q | xargs --no-run-if-empty docker container stop'
-            sh 'docker container ls -a -fname=mypythonContainer -q | xargs -r docker container rm'
+            sh 'docker ps -f name=httpbin_image -q | xargs --no-run-if-empty docker container stop'
+            sh 'docker container ls -a -fname=httpbin_image -q | xargs -r docker container rm'
  
       }
     }
     stage('Docker Run') {
       steps{
          script {
-                 sh 'docker run -d -p 8096:5000 --rm --name mypythonContainer 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr'
+                 sh 'docker run -d -p 8096:5000 --rm --name httpbin_image 883081664011.dkr.ecr.us-east-2.amazonaws.com/repo_ecr'
                 }
             }
             
