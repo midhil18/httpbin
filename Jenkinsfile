@@ -1,8 +1,11 @@
 pipeline {
-  agent any
   environment {
+    imagename = "kennethreitz/httpbin"
+    registryCredential = 'kennethreitz'
+    dockerImage = ''
     registry = "883081664011.dkr.ecr.us-east-2.amazonaws.com/your_ecr_repo1"   
   }
+  agent any
   stages {
     stage('Cloning Git') {
       steps {
