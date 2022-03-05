@@ -1,16 +1,12 @@
 pipeline {
-  environment {
-    registry = "883081664011.dkr.ecr.us-east-2.amazonaws.com/your_ecr_repo1"
-    imagename = "kennethreitz/httpbin"
-    registryCredential = 'kennethreitz'
-    dockerImage = ''
-  }
   agent any
+  environment {
+    registry = "883081664011.dkr.ecr.us-east-2.amazonaws.com/your_ecr_repo1"   
+  }
   stages {
     stage('Cloning Git') {
       steps {
         git([url: 'https://github.com/midhil18/httpbin', branch: 'patch-1', credentialsId: 'midhil18'])
- 
       }
     }
     stage('Building image') {
@@ -31,8 +27,7 @@ pipeline {
     stage('stop previous containers') {
       steps{
             sh 'docker ps -f name=httpbin_image -q | xargs --no-run-if-empty docker container stop'
-            sh 'docker container ls -a -fname=httpbin_image -q | xargs -r docker container rm'
- 
+            sh 'docker container ls -a -fname=httpbin_image -q | xargs -r docker container rm' 
       }
     }
     stage('Docker Run') {
